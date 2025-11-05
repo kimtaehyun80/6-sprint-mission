@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   application:
     name: discodeit
   servlet:
@@ -7,18 +9,29 @@ spring:
       maxRequestSize: 30MB  # 한 번에 최대 업로드 가능 용량
 
 
+logging:
+  level:
+    root: info
+
+
 discodeit:
-  repository:
-    type: file   # jcf | file
-    file-directory: .discodeit
+  storage:
+    type: filesystem
+    path: /app/storage/files
 
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tagsSorter: alpha
-    operationsSorter: alpha
-  api-docs:
-    path: /v3/api-docs
-  packagesToScan: com.sprint.mission.discodeit
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, loggers
 
+
+info:
+  app:
+    name: Discodeit
+    version: 1.7.0
+  java:
+    version: 17
+  spring-boot:
+    version: 3.4.0

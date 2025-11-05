@@ -5,5 +5,4 @@ public record BinaryContentCreateRequest(
     String contentType,
     byte[] bytes
 ) {
-
 }
